@@ -4,17 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KaretaByte</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #0a0a0a;
-      color: #00ff88;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
+ <style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #1769aa;
+    text-shadow: 1px 2px 8px #b5c7e3;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: #2388f2;
+  }
+  p {
+    max-width: 600px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(176,188,255,0.12);
+  }
+  .button {
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #2388f2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(35,136,242,0.15);
+    transition: background 0.2s;
+    border: none;
+    outline: none;
+    display: inline-block;
+  }
+  .button:hover {
+    background-color: #1769aa;
+  }
+  footer {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #555;
+    background: rgba(255,255,255,0.5);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+</style>
     }
     h1 {
       font-size: 3rem;
