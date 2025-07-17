@@ -15,20 +15,56 @@
       align-items: center;
       text-align: center;
       padding: 2rem;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .side-deco {
+      position: fixed;
+      top: 0;
+      width: 40px;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .side-deco.left {
+      left: 0;
+      background: linear-gradient(180deg, #00ffaa 0%, #0a0a0a 90%);
+      box-shadow: 0 0 24px 4px #00ffaa;
+      border-right: 2px solid #00ffaa;
+    }
+    .side-deco.right {
+      right: 0;
+      background: linear-gradient(0deg, #00ffaa 0%, #0a0a0a 90%);
+      box-shadow: 0 0 24px 4px #00ffaa;
+      border-left: 2px solid #00ffaa;
+    }
+    @media (max-width: 700px) {
+      .side-deco {
+        display: none;
+      }
+      body {
+        padding: 1rem;
+      }
     }
     h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
+      z-index: 1;
     }
     h2 {
       font-size: 1.5rem;
       margin-top: 0;
       color: #00ffaa;
+      z-index: 1;
     }
     p {
       max-width: 600px;
       line-height: 1.6;
       font-size: 1rem;
+      z-index: 1;
     }
     .button {
       margin-top: 2rem;
@@ -42,28 +78,39 @@
       transition: background 0.2s, box-shadow 0.2s;
       box-shadow: 0 0 0px #00ffaa;
       display: inline-block;
+      z-index: 1;
     }
     .button:hover {
       background-color: #1fffbb;
       box-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa88;
+      filter: brightness(1.2);
+    }
+    .buttons-container {
+      margin-top: 2rem;
+      z-index: 1;
     }
     footer {
       margin-top: 3rem;
       font-size: 0.8rem;
       color: #777;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+  <div class="side-deco left"></div>
+  <div class="side-deco right"></div>
   <h1>KaretaByte</h1>
   <h2>Break the code.</h2>
   <p>
     Marca independiente de tecnología, informática y actitud. Desde Murcia para el mundo, creada por karetaTon.
     Aquí no solo se programa: se desafía el sistema. Hacking ético, desarrollo, ideas frescas y proyectos reales.
   </p>
-  <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</a>
-  <a class="button" href="https://www.facebook.com/profile.php?id=61578499139505" target="_blank">Síguenos en Facebook</a>
-  <a class="button" href="https://mail.google.com/mail/u/1/?pli=1#inbox?compose=DmwnWrRmVgmqGtQLBkKhRQwvBBLxxNhCgWkLtxtXggkKnxjhxjFFjSbkFcDCzShDvGfpWxPPKmtV">¡Contáctanos!</a>
+  <div class="buttons-container">
+    <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</a>
+    <a class="button" href="https://www.facebook.com/profile.php?id=61578499139505" target="_blank">Síguenos en Facebook</a>
+    <a class="button" href="mailto:contacto@karetabyte.com">¡Contáctanos!</a>
+  </div>
   <footer>
     © 2025 KaretaByte. Todos los derechos reservados.
   </footer>
