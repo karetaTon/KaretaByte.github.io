@@ -81,6 +81,7 @@
       transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
       cursor: pointer;
       outline: none;
+      overflow: hidden;
     }
     .accordion:hover, .accordion:focus {
       border-color: #00ffaa;
@@ -98,25 +99,25 @@
     }
     .accordion-arrow {
       font-size: 1.3em;
-      transition: transform 0.2s;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
       margin-left: 1em;
     }
     .accordion.open .accordion-arrow {
       transform: rotate(90deg);
     }
     .accordion-content {
-      padding: 0 1.5rem 1.5rem 1.5rem;
+      padding: 0 1.5rem;
       color: #00ff88;
-      display: none;
-      animation: fadein 0.3s;
       text-align: left;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.5s cubic-bezier(.4,0,.2,1), max-height 0.5s cubic-bezier(.4,0,.2,1), padding 0.3s cubic-bezier(.4,0,.2,1);
     }
     .accordion.open .accordion-content {
-      display: block;
-    }
-    @keyframes fadein {
-      from { opacity: 0;}
-      to { opacity: 1;}
+      opacity: 1;
+      max-height: 400px; /* suficiente para el contenido */
+      padding-bottom: 1.5rem;
     }
 
     .button {
@@ -166,16 +167,9 @@
     </div>
     <div class="accordion-content">
       <p>
-        KaretaByte no es solo una marca, es una forma de entender la tecnología. 
-        Nacimos desde el código, desde la curiosidad y desde las ganas de romper lo establecido. 
-        Apostamos por la informática libre, la seguridad digital, el desarrollo con actitud, ayudar a los demas, reparar aparatos y la creatividad sin límites.
-      </p>
-      <p>
-        Somos una marca independiente fundada por <strong>karetaTon</strong>, desde Murcia, con la misión de aportar soluciones reales y crear proyectos con identidad propia.
-        Aquí no solo se programan líneas de código: se construye futuro.
-      </p>
-      <p>
-        Tecnología, ética, rebeldía y comunidad. Eso es KaretaByte.
+        KaretaByte no es solo una marca, es una forma de entender la tecnología.<br>
+        Nacimos desde el código, desde la curiosidad y desde las ganas de romper lo establecido.<br>
+        Apostamos por la informática libre, la seguridad digital, el desarrollo con actitud y la creatividad sin límites.
       </p>
     </div>
   </div>
