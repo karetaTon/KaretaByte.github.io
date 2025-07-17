@@ -107,5 +107,25 @@
     Aquí no solo se programa: se desafía el sistema. Hacking ético, desarrollo, ideas frescas y proyectos reales.
   </p>
   <div class="buttons-container">
-    <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</
-
+    <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</a>
+    <a class="button" href="https://www.facebook.com/profile.php?id=61578499139505" target="_blank">Síguenos en Facebook</a>
+    <a class="button" id="contactButton" href="https://mail.google.com/mail/u/1/?pli=1#inbox?compose=GTvVlcSDXmXQvQzbkVQvllZlkwRVTbqLVFJLDPLlfcnrqfQJkKsKHCxbMhKtvBJCWlMLkDFszQCQd" target="_blank">¡Contáctanos!</a>
+  </div>
+  <footer>
+    © 2025 KaretaByte. Todos los derechos reservados.
+  </footer>
+  <script>
+    // Detecta si es móvil
+    function isMobile() {
+      return /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(navigator.userAgent);
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      var contactBtn = document.getElementById('contactButton');
+      if (isMobile()) {
+        contactBtn.setAttribute('href', 'mailto:contacto@karetabyte.com');
+        contactBtn.removeAttribute('target');
+      }
+    });
+  </script>
+</body>
+</html>
