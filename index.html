@@ -67,26 +67,58 @@
       z-index: 1;
       margin: 0 auto 1rem auto;
     }
-    section {
+
+    /* Estilos acordeón */
+    .accordion {
       background: #101010;
       border: 1px solid #00ffaa55;
       border-radius: 14px;
       margin-top: 2rem;
       margin-bottom: 2rem;
-      padding: 2rem 1rem;
       max-width: 700px;
       box-shadow: 0 0 18px #00ffaa22;
       z-index: 1;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer;
+      outline: none;
     }
-    section h2 {
+    .accordion:hover, .accordion:focus {
+      border-color: #00ffaa;
+      box-shadow: 0 0 32px #00ffaa55;
+      background: #161616;
+    }
+    .accordion-header {
+      padding: 1.5rem 1rem;
+      font-size: 1.25rem;
       color: #00ffaa;
-      margin-top: 0;
-      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
     }
-    section p {
+    .accordion-arrow {
+      font-size: 1.3em;
+      transition: transform 0.2s;
+      margin-left: 1em;
+    }
+    .accordion.open .accordion-arrow {
+      transform: rotate(90deg);
+    }
+    .accordion-content {
+      padding: 0 1.5rem 1.5rem 1.5rem;
       color: #00ff88;
-      margin-bottom: 1rem;
+      display: none;
+      animation: fadein 0.3s;
+      text-align: left;
     }
+    .accordion.open .accordion-content {
+      display: block;
+    }
+    @keyframes fadein {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+
     .button {
       margin-top: 2rem;
       margin-right: 0.5rem;
@@ -127,21 +159,26 @@
     Marca independiente de tecnología, informática y actitud. Desde Murcia para el mundo, creada por karetaTon.
     Aquí no solo se programa: se desafía el sistema. Hacking ético, desarrollo, ideas frescas y proyectos reales.
   </p>
-  <section>
-    <h2> Información </h2>
-    <p>
-      KaretaByte no es solo una marca, es una forma de entender la tecnología. 
-      Nacimos desde el código, desde la curiosidad y desde las ganas de romper lo establecido. 
-      Apostamos por la informática libre, la seguridad digital, el desarrollo con actitud y la creatividad sin límites.
-    </p>
-    <p>
-      Somos una marca independiente fundada por <strong>karetaTon</strong>, desde Murcia, con la misión de aportar soluciones reales y crear proyectos con identidad propia.
-      Aquí no solo se programan líneas de código: se construye futuro.
-    </p>
-    <p>
-      Tecnología, ética, rebeldía y comunidad. Eso es KaretaByte.
-    </p>
-  </section>
+  <div class="accordion" tabindex="0" id="infoAccordion">
+    <div class="accordion-header">
+      <span>Información</span>
+      <span class="accordion-arrow">&#9654;</span>
+    </div>
+    <div class="accordion-content">
+      <p>
+        KaretaByte no es solo una marca, es una forma de entender la tecnología. 
+        Nacimos desde el código, desde la curiosidad y desde las ganas de romper lo establecido. 
+        Apostamos por la informática libre, la seguridad digital, el desarrollo con actitud y la creatividad sin límites.
+      </p>
+      <p>
+        Somos una marca independiente fundada por <strong>karetaTon</strong>, desde Murcia, con la misión de aportar soluciones reales y crear proyectos con identidad propia.
+        Aquí no solo se programan líneas de código: se construye futuro.
+      </p>
+      <p>
+        Tecnología, ética, rebeldía y comunidad. Eso es KaretaByte.
+      </p>
+    </div>
+  </div>
   <div class="buttons-container">
     <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</a>
     <a class="button" href="https://www.facebook.com/profile.php?id=61578499139505" target="_blank">Síguenos en Facebook</a>
@@ -161,6 +198,18 @@
         contactBtn.setAttribute('href', 'mailto:contacto@karetabyte.com');
         contactBtn.removeAttribute('target');
       }
+
+      // Acordeón
+      var accordion = document.getElementById("infoAccordion");
+      accordion.addEventListener("click", function() {
+        accordion.classList.toggle("open");
+      });
+      accordion.addEventListener("keydown", function(e) {
+        if (e.key === "Enter" || e.key === " ") {
+          accordion.classList.toggle("open");
+          e.preventDefault();
+        }
+      });
     });
   </script>
 </body>
