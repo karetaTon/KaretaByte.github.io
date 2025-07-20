@@ -124,11 +124,11 @@
       text-align: left;
       opacity: 0;
       max-height: 0;
-      overflow: hidden;
+      overflow-y: hidden;
+      padding-bottom: 0;
       transition: opacity .5s var(--transition), max-height .5s var(--transition), padding .3s var(--transition);
       scrollbar-width: thin;
       scrollbar-color: var(--green-main) var(--bg-panel);
-      /* extra: no-scrollbar visible when closed */
     }
     .accordion.open .accordion-content {
       opacity: 1;
@@ -297,7 +297,7 @@
       // Acordeón animado
       var accordion = document.getElementById("aboutAccordion");
       accordion.addEventListener("click", function(e) {
-        // Evita abrir cuando se hace click en el contenido interno
+        // Solo permite abrir/cerrar haciendo click en la cabecera
         if (e.target.classList.contains("accordion-header") || e.target.closest(".accordion-header")) {
           accordion.classList.toggle("open");
         }
