@@ -119,21 +119,20 @@
       transform: rotate(90deg);
     }
     .accordion-content {
-      padding: 0 1.5rem;
+      padding: 0 1.5rem 0 1.5rem; /* solo laterales, nada abajo */
       color: var(--green-sec);
       text-align: left;
       opacity: 0;
       max-height: 0;
-      overflow-y: hidden;
-      padding-bottom: 0;
-      transition: opacity .5s var(--transition), max-height .5s var(--transition), padding .3s var(--transition);
+      overflow: hidden;
+      transition: opacity .45s var(--transition), max-height .45s var(--transition), padding .25s var(--transition);
       scrollbar-width: thin;
       scrollbar-color: var(--green-main) var(--bg-panel);
     }
     .accordion.open .accordion-content {
       opacity: 1;
       max-height: 330px;
-      padding-bottom: 1.2rem;
+      padding: 0 1.5rem 1.2rem 1.5rem; /* añade padding-bottom */
       overflow-y: auto;
     }
     .accordion-content::-webkit-scrollbar {
