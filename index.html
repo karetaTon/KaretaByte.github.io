@@ -5,20 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KaretaByte</title>
   <style>
-    body {
+    :root {
+      --green-main: #00ffaa;
+      --green-sec: #00ff88;
+      --bg-dark: #0a0a0a;
+      --bg-panel: #101010;
+      --border: #00ffaa55;
+      --shadow: #00ffaa22;
+      --shadow-hover: #00ffaa55;
+      --radius: 14px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    html, body {
       margin: 0;
+      padding: 0;
+      background: var(--bg-dark);
+      color: var(--green-sec);
       font-family: 'Courier New', monospace;
-      background-color: #0a0a0a;
-      color: #00ff88;
+      min-height: 100vh;
+      width: 100vw;
+      box-sizing: border-box;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem 1rem 1rem;
       position: relative;
       min-height: 100vh;
+      max-width: 100vw;
       overflow-x: hidden;
     }
+
     .side-deco {
       position: fixed;
       top: 0;
@@ -31,75 +52,71 @@
     }
     .side-deco.left {
       left: 0;
-      background: linear-gradient(180deg, #00ffaa 0%, #0a0a0a 90%);
-      box-shadow: 0 0 24px 4px #00ffaa;
-      border-right: 2px solid #00ffaa;
+      background: linear-gradient(180deg, var(--green-main) 0%, var(--bg-dark) 90%);
+      box-shadow: 0 0 24px 4px var(--green-main);
+      border-right: 2px solid var(--green-main);
     }
     .side-deco.right {
       right: 0;
-      background: linear-gradient(0deg, #00ffaa 0%, #0a0a0a 90%);
-      box-shadow: 0 0 24px 4px #00ffaa;
-      border-left: 2px solid #00ffaa;
+      background: linear-gradient(0deg, var(--green-main) 0%, var(--bg-dark) 90%);
+      box-shadow: 0 0 24px 4px var(--green-main);
+      border-left: 2px solid var(--green-main);
     }
-    @media (max-width: 700px) {
-      .side-deco {
-        display: none;
-      }
-      body {
-        padding: 1rem;
-      }
-    }
+
     h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
       z-index: 1;
+      letter-spacing: 1px;
     }
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-top: 0;
-      color: #00ffaa;
+      color: var(--green-main);
       z-index: 1;
     }
     p {
-      max-width: 600px;
+      max-width: 700px;
+      margin: 0 auto 1rem auto;
       line-height: 1.6;
       font-size: 1rem;
       z-index: 1;
-      margin: 0 auto 1rem auto;
     }
 
-    /* Estilos acordeón animado */
+    /* Acordeón animado y con scroll en móvil */
     .accordion {
-      background: #101010;
-      border: 1px solid #00ffaa55;
-      border-radius: 14px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       margin-top: 2rem;
       margin-bottom: 2rem;
-      max-width: 700px;
-      box-shadow: 0 0 18px #00ffaa22;
+      max-width: 680px;
+      box-shadow: 0 0 18px var(--shadow);
       z-index: 1;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
       cursor: pointer;
       outline: none;
       overflow: hidden;
     }
     .accordion:hover, .accordion:focus {
-      border-color: #00ffaa;
-      box-shadow: 0 0 32px #00ffaa55;
+      border-color: var(--green-main);
+      box-shadow: 0 0 32px var(--shadow-hover);
       background: #161616;
     }
     .accordion-header {
-      padding: 1.5rem 1rem;
-      font-size: 1.25rem;
-      color: #00ffaa;
+      padding: 1.2rem 1rem;
+      font-size: 1.18rem;
+      color: var(--green-main);
       display: flex;
       align-items: center;
       justify-content: space-between;
       user-select: none;
+      font-weight: bold;
+      letter-spacing: .5px;
     }
     .accordion-arrow {
       font-size: 1.3em;
-      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
       margin-left: 1em;
     }
     .accordion.open .accordion-arrow {
@@ -107,47 +124,125 @@
     }
     .accordion-content {
       padding: 0 1.5rem;
-      color: #00ff88;
+      color: var(--green-sec);
       text-align: left;
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transition: opacity 0.5s cubic-bezier(.4,0,.2,1), max-height 0.5s cubic-bezier(.4,0,.2,1), padding 0.3s cubic-bezier(.4,0,.2,1);
+      transition: opacity .5s var(--transition), max-height .5s var(--transition), padding .3s var(--transition);
+      scrollbar-width: thin;
+      scrollbar-color: var(--green-main) var(--bg-panel);
     }
     .accordion.open .accordion-content {
       opacity: 1;
-      max-height: 400px; /* suficiente para el contenido */
-      padding-bottom: 1.5rem;
+      max-height: 330px;
+      padding-bottom: 1.2rem;
+      overflow-y: auto;
+    }
+    .accordion-content::-webkit-scrollbar {
+      width: 7px;
+    }
+    .accordion-content::-webkit-scrollbar-thumb {
+      background: var(--green-main);
+      border-radius: 4px;
+    }
+    .accordion-content::-webkit-scrollbar-track {
+      background: var(--bg-panel);
+    }
+    .accordion-content section {
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+    .accordion-content h2 {
+      font-size: 1.05rem;
+      margin-bottom: .6rem;
+    }
+    .accordion-content p {
+      font-size: 1rem;
+      margin-bottom: .8rem;
+      color: var(--green-sec);
     }
 
     .button {
-      margin-top: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 0.6rem;
       margin-right: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #00ffaa;
+      padding: 0.95rem 1.5rem;
+      background-color: var(--green-main);
       color: #000;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
       transition: background 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 0px #00ffaa;
+      box-shadow: 0 0 0px var(--green-main);
       display: inline-block;
       z-index: 1;
+      font-size: 1.05rem;
+      min-width: 180px;
     }
     .button:hover {
       background-color: #1fffbb;
-      box-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa88;
+      box-shadow: 0 0 10px var(--green-main), 0 0 20px #00ffaa88;
       filter: brightness(1.2);
     }
     .buttons-container {
       margin-top: 2rem;
       z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
     }
     footer {
       margin-top: 3rem;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: #777;
       z-index: 1;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Mejoras para móvil */
+    @media (max-width: 700px) {
+      .side-deco {
+        display: none;
+      }
+      body {
+        padding: 1.2rem 0.2rem 0.7rem 0.2rem;
+        max-width: 100vw;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      .accordion,
+      .accordion-content {
+        max-width: 99vw;
+      }
+      .accordion-content {
+        max-height: 220px;
+        font-size: 0.99rem;
+      }
+      .buttons-container {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .button {
+        display: block;
+        width: 95vw;
+        max-width: 370px;
+        margin: 0.5rem auto 0.5rem auto;
+        font-size: 1.04rem;
+      }
+      footer {
+        font-size: 0.92rem;
+        margin-top: 2.2rem;
+      }
     }
   </style>
 </head>
@@ -158,24 +253,24 @@
   <h2>Break the code.</h2>
   <p>
     Marca independiente de tecnología, informática y actitud. Desde Murcia para el mundo, creada por karetaTon.
-    Aquí no solo se programa: se desafía el sistema. tutoriales de </strong>TODO<strong>, desarrollo, reparacion de consolas, electrodomesticos, telefonos, ordenadores, etc...
+    Aquí no solo se programa: se desafía el sistema. Hacking ético, desarrollo, ideas frescas y proyectos reales.
   </p>
   <div class="accordion" tabindex="0" id="aboutAccordion">
     <div class="accordion-header">
-      <span>Información</span>
+      <span>Sobre nosotros</span>
       <span class="accordion-arrow">&#9654;</span>
     </div>
     <div class="accordion-content">
       <section>
-        <h2>¡Viva lo digital!</h2>
+        <h2>Sobre nosotros</h2>
         <p>
           KaretaByte no es solo una marca, es una forma de entender la tecnología. 
           Nacimos desde el código, desde la curiosidad y desde las ganas de romper lo establecido. 
-          Apostamos por la informática libre, la seguridad digital, la enseñanza de la tecnologia y la creatividad sin límites.
+          Apostamos por la informática libre, la seguridad digital, el desarrollo con actitud y la creatividad sin límites.
         </p>
         <p>
           Somos una marca independiente fundada por <strong>karetaTon</strong>, desde Murcia, con la misión de aportar soluciones reales y crear proyectos con identidad propia.
-          Aquí no solo se programan líneas de código: se prepara gente para el futuro.
+          Aquí no solo se programan líneas de código: se construye futuro.
         </p>
         <p>
           Tecnología, ética, rebeldía y comunidad. Eso es KaretaByte.
