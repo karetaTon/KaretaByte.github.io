@@ -125,9 +125,8 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
+      padding-bottom: 0;
       transition: opacity .45s var(--transition), max-height .45s var(--transition), padding .25s var(--transition);
-      scrollbar-width: thin;
-      scrollbar-color: var(--green-main) var(--bg-panel);
     }
     .accordion.open .accordion-content {
       opacity: 1;
@@ -135,14 +134,14 @@
       padding: 0 1.5rem 1.2rem 1.5rem; /* añade padding-bottom */
       overflow-y: auto;
     }
-    .accordion-content::-webkit-scrollbar {
+    .accordion.open .accordion-content::-webkit-scrollbar {
       width: 7px;
     }
-    .accordion-content::-webkit-scrollbar-thumb {
+    .accordion.open .accordion-content::-webkit-scrollbar-thumb {
       background: var(--green-main);
       border-radius: 4px;
     }
-    .accordion-content::-webkit-scrollbar-track {
+    .accordion.open .accordion-content::-webkit-scrollbar-track {
       background: var(--bg-panel);
     }
     .accordion-content section {
@@ -219,7 +218,7 @@
       .accordion-content {
         max-width: 99vw;
       }
-      .accordion-content {
+      .accordion.open .accordion-content {
         max-height: 220px;
         font-size: 0.99rem;
       }
@@ -250,7 +249,6 @@
     Marca independiente de tecnología, informática y actitud. Desde Murcia para el mundo, creada por karetaTon.
     Aquí no solo se programa: se desafía el sistema. Hacking ético, desarrollo, ideas frescas y proyectos reales.
   </p>
-  <!-- El acordeón NO tiene class="open" por defecto; está cerrado -->
   <div class="accordion" tabindex="0" id="aboutAccordion">
     <div class="accordion-header">
       <span>Sobre nosotros</span>
