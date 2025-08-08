@@ -25,6 +25,7 @@
       min-height: 100vh;
       width: 100vw;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
     body {
       display: flex;
@@ -176,6 +177,10 @@
       z-index: 1;
       font-size: 1.05rem;
       min-width: 180px;
+      border: none;
+    }
+    .button:active {
+      filter: brightness(1.3);
     }
     .button:hover {
       background-color: #1fffbb;
@@ -199,7 +204,7 @@
       text-align: center;
     }
 
-    /* MOBILE */
+    /* MOBILE IMPROVEMENTS */
     @media (max-width: 700px) {
       .side-deco {
         display: none;
@@ -210,32 +215,76 @@
       }
       h1 {
         font-size: 1.5rem;
+        margin-bottom: 0.2rem;
       }
       h2 {
-        font-size: 1.1rem;
+        font-size: 1.09rem;
+        margin-bottom: 0.2rem;
+      }
+      p {
+        font-size: 0.97rem;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
       }
       .accordion,
       .accordion-content {
         max-width: 99vw;
+        font-size: 0.99rem;
+      }
+      .accordion-header {
+        font-size: 1.07rem;
+        padding: 1rem 0.5rem;
       }
       .accordion.open .accordion-content {
-        max-height: 220px;
-        font-size: 0.99rem;
+        max-height: 270px;
+        font-size: 0.98rem;
       }
       .buttons-container {
         flex-direction: column;
         gap: 0.5rem;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 1.2rem;
       }
       .button {
         display: block;
-        width: 95vw;
-        max-width: 370px;
+        width: 97vw;
+        max-width: 380px;
         margin: 0.5rem auto 0.5rem auto;
-        font-size: 1.04rem;
+        font-size: 1.03rem;
+        padding: 0.85rem 0.5rem;
       }
       footer {
         font-size: 0.92rem;
         margin-top: 2.2rem;
+      }
+      /* Better spacing between accordions */
+      .accordion {
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 430px) {
+      body {
+        padding: 1rem 0.1rem 0.5rem 0.1rem;
+      }
+      h1 {
+        font-size: 1.09rem;
+      }
+      .accordion-header {
+        font-size: 0.99rem;
+        padding: 0.85rem 0.3rem;
+      }
+      .button {
+        width: 99vw;
+        max-width: 99vw;
+        font-size: 0.97rem;
+      }
+      .accordion,
+      .accordion-content {
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -272,6 +321,29 @@
       </section>
     </div>
   </div>
+  <!-- NUEVO ACORDEÓN -->
+  <div class="accordion" tabindex="0" id="offerAccordion">
+    <div class="accordion-header">
+      <span>¿Qué ofrecemos?</span>
+      <span class="accordion-arrow">&#9654;</span>
+    </div>
+    <div class="accordion-content">
+      <section>
+        <h2>Qué ofrecemos</h2>
+        <p>
+          En KaretaByte ofrecemos soluciones tecnológicas reales, diseñadas con pasión y compromiso por la informática libre y la seguridad digital. 
+          Nuestro enfoque es crear proyectos con identidad propia, donde la creatividad y la innovación van de la mano con la eficiencia y la calidad.
+        </p>
+        <p>
+          Desde desarrollo de software personalizado, asesoría en ciberseguridad, hasta soporte técnico y formación tecnológica, nuestro objetivo es ayudarte a transformar tus ideas en productos sólidos y seguros. 
+          Apostamos por la transparencia, la ética y el conocimiento abierto, porque creemos que la tecnología debe estar al servicio de las personas.
+        </p>
+        <p>
+          KaretaByte no es solo una marca, es una forma de entender la tecnología: libre, segura y con actitud.
+        </p>
+      </section>
+    </div>
+  </div>
   <div class="buttons-container">
     <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</a>
     <a class="button" href="https://www.facebook.com/profile.php?id=61578499139505" target="_blank">Síguenos en Facebook</a>
@@ -291,20 +363,23 @@
         contactBtn.setAttribute('href', 'mailto:contacto@karetabyte.com');
         contactBtn.removeAttribute('target');
       }
-      // Acordeón animado
-      var accordion = document.getElementById("aboutAccordion");
-      accordion.addEventListener("click", function(e) {
-        // Solo permite abrir/cerrar haciendo click en la cabecera
-        if (e.target.classList.contains("accordion-header") || e.target.closest(".accordion-header")) {
-          accordion.classList.toggle("open");
-        }
-      });
-      accordion.addEventListener("keydown", function(e) {
-        if (e.key === "Enter" || e.key === " ") {
-          accordion.classList.toggle("open");
-          e.preventDefault();
-        }
-      });
+      // Animación y funcionalidad de acordeones
+      function setupAccordion(id) {
+        var accordion = document.getElementById(id);
+        accordion.addEventListener("click", function(e) {
+          if (e.target.classList.contains("accordion-header") || e.target.closest(".accordion-header")) {
+            accordion.classList.toggle("open");
+          }
+        });
+        accordion.addEventListener("keydown", function(e) {
+          if (e.key === "Enter" || e.key === " ") {
+            accordion.classList.toggle("open");
+            e.preventDefault();
+          }
+        });
+      }
+      setupAccordion("aboutAccordion");
+      setupAccordion("offerAccordion");
     });
   </script>
 </body>
