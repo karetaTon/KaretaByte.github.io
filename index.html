@@ -65,7 +65,21 @@
       margin-bottom: 0.4rem;
       z-index: 1;
       letter-spacing: 1px;
+      /* Para asegurar el centrado, por si hay elementos inline */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.18em;
     }
+    .resalta-KB {
+      color: var(--green-main);
+      font-size: 2.7rem;
+      font-weight: bold;
+      text-shadow: 0 0 14px var(--green-main), 0 0 2px #fff3;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
     h2 {
       font-size: 1.3rem;
       margin-top: 0;
@@ -214,8 +228,11 @@
         max-width: 100vw;
       }
       h1 {
-        font-size: 1.5rem;
+        font-size: 2.05rem !important;
         margin-bottom: 0.2rem;
+      }
+      .resalta-KB {
+        font-size: 2.6rem !important;
       }
       h2 {
         font-size: 1.09rem;
@@ -271,7 +288,10 @@
         padding: 1rem 0.1rem 0.5rem 0.1rem;
       }
       h1 {
-        font-size: 1.09rem;
+        font-size: 1.7rem !important;
+      }
+      .resalta-KB {
+        font-size: 2.2rem !important;
       }
       .accordion-header {
         font-size: 0.99rem;
@@ -292,7 +312,9 @@
 <body>
   <div class="side-deco left"></div>
   <div class="side-deco right"></div>
-  <h1>KaretaByte</h1>
+  <h1>
+    <span class="resalta-KB">K</span>areta<span class="resalta-KB">B</span>yte
+  </h1>
   <h2>Break the code.</h2>
   <p>
     Marca independiente de tecnología, informática y actitud. Desde Murcia para el mundo, creada por karetaTon.
@@ -347,7 +369,7 @@
   <div class="buttons-container">
     <a class="button" href="https://instagram.com/karetabyte" target="_blank">Síguenos en Instagram</a>
     <a class="button" href="https://www.facebook.com/profile.php?id=61578499139505" target="_blank">Síguenos en Facebook</a>
-    <a class="button" id="contactButton" href="https://mail.google.com/mail/u/1/?pli=1#inbox?compose=CllgCJlDTBgCvVJnrgFfmkGjdhwMSsKfDDBMXQGhFXDGMDwlBsTgpdWLDlbrDVBjXLcHQDlhVsV target="_blank">¡Contáctanos!</a>
+    <a class="button" id="contactButton" href="https://mail.google.com/mail/u/1/?pli=1#inbox?compose=CllgCJlDTBgCvVJnrgFfmkGjdhwMSsKfDDBMXQGhFXDGMDwlBsTgpdWLDlbrDVBjXLcHQDlhVsV" target="_blank">¡Contáctanos!</a>
   </div>
   <footer>
     © 2025 KaretaByte. Todos los derechos reservados.
